@@ -86,9 +86,9 @@ class PhoneRTCPlugin : CDVPlugin {
     func sendMessage(callbackId: String, message: NSData) {
         let json = NSJSONSerialization.JSONObjectWithData(message,
             options: NSJSONReadingOptions.MutableLeaves,
-            error: nil) as NSDictionary
+            error: nil) as! NSDictionary
         
-        let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsDictionary: json)
+        let pluginResult = CDVPluginResult(status: CDVCommandStatus_OK, messageAsDictionary: json as [NSObject : AnyObject])
         pluginResult.setKeepCallbackAsBool(true);
         
         self.commandDelegate.sendPluginResult(pluginResult, callbackId:callbackId)
